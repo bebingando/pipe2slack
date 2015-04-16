@@ -1,0 +1,4 @@
+[slack]
+emoji=:burrito:
+; Replace the URL with an appropriate one from your team's Slack integrations list
+webhookURL=https://hooks.slack.com/services/example/webhook/url
