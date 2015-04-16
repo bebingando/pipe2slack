@@ -68,6 +68,15 @@ def getConfigOption(section, option):
 iconEmoji = getConfigOption('slack', 'emoji')
 webhookURL = getConfigOption('slack', 'webhookURL')
 
+def packageAndSend(message):
+	payload = {
+		'channel':		channel,
+		'username':		socket.gethostname(),
+		'text':			message,
+		'icon_emoji':	iconEmoji
+	}
+	requests.post(webhookURL, data=json.dumps(payload))
+
 matchedLineCount = 0
 text = ""
 
@@ -79,18 +88,15 @@ if regexString:
 			if regex.search(line):
 				text += line
 				matchedLineCount += 1
+				if matchedLineCount == maxLines:
+					packageAndSend(text)
+	sys.exit(0)
 else:
 	for line in sys.stdin:
 		sys.stdout.write(line)
 		if matchedLineCount < maxLines:
 			text += line
 			matchedLineCount += 1
-
-payload = {
-	'channel':		channel,
-	'username':		socket.gethostname(),
-	'text':			text,
-	'icon_emoji':	iconEmoji
-}
-
-requests.post(webhookURL, data=json.dumps(payload))
+			if matchedLineCount == maxLines:
+				packageAndSend(text)
+	sys.exit(0)
