@@ -5,6 +5,8 @@ It is by no means a comprehensive wrapper to Slack's API; rather, it is most use
 
 Setup is easy:
 
+In the current implementation, the python `requests` module is required, so install that via pip: `pip install requests`
+
 In your ~/.bash_profile, make an alias (and don't forget to source it: `source ~/.bash_profile`)
 
 `alias pipe2slack='python ~/path/to/pipe2slack/slack.py'`
