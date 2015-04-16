@@ -14,4 +14,5 @@ You will also need to customize the `config` file with your emoji and webhook UR
 With that out of the way, using pipe2slack is really simple! Some examples:
 
 `echo "something to post" | pipe2slack -c #channel-name`
+
 My personal favorite: `mvn clean install | pipe2slack -c @myuser -r "(FAILURE|BUILD SUCCESS)"`
